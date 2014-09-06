@@ -4,7 +4,6 @@
 
 
 int GameEngine::doDamage(int accuracy) {
-    int random_hit;
 
     random_hit = rand()%100;
     if (random_hit <= accuracy) {

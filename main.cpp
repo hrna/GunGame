@@ -9,6 +9,8 @@ int main(void) {
 	GameEngine engine;
 	Players p;
 
+	p.setHealth(100);
+
 	for (int i = 0; i < 10; i++)
 	{ 
 		if (p.getHealth(0) > 0) {

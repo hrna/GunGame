@@ -1,10 +1,11 @@
 
 class Players {
 private:
-	int humanHealth = 100;
-	int cpuHealth = 100;
+	int humanHealth;
+	int cpuHealth;
 public:
 	void reduceHealth(int damage, int player);
 	int getHealth(int player);
+	int setHealth(int hp);
 };
 

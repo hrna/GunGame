@@ -1,5 +1,5 @@
-CXX = g++
-CXXFLAGS = -Wall -Wextra -pedantic-errors -std=c++0x
+CC = g++
+CFLAGS = -Wall -Wextra -pedantic-errors -std=c++0x
 DEPS = game_engine.h players.h
 OBJ = game_engine.o players.o main.o
 
