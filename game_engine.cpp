@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "game_engine.h"
+#include "players.h"
 
 
 int GameEngine::doDamage(int accuracy) {
@@ -14,5 +15,67 @@ int GameEngine::doDamage(int accuracy) {
         if (random_hit > 95 && random_hit <= 100) { return 100; } //Headshot
     } else {
         return 0;
+    }
+}
+
+int GameEngine::battle(int playeraccu, int cpuaccu)
+{
+    srand(time(NULL)); // initializing the random seed
+    Players p;
+
+    p.setHealth(100);
+    rollOn = true;
+
+    while (rollOn)
+    {
+        rTurn = rand()%2;
+        if (p.getHealth(0) <= 0) { 
+            rollOn = false;
+            std::cout << "=============================" << std::endl;
+            std::cout << "Player is dead" << std::endl; 
+            std::cout << "=============================" << std::endl;
+        }
+        else if (p.getHealth(1) <= 0) {
+            rollOn = false;
+            std::cout << "=============================" << std::endl;
+            std::cout << "Cpu is dead" << std::endl; 
+            std::cout << "=============================" << std::endl;
+        }
+
+        if (rTurn == 0) // 0 = player, 1 = cpu
+        {
+            if (p.getHealth(0) > 1) {
+                damage = this->doDamage(playeraccu);
+                p.reduceHealth(damage,1);
+                std::cout << "Player did damage: "<< damage << std::endl; 
+            } else { break; }
+        }
+        else
+        {
+            if (p.getHealth(1) > 1) {
+                damage = this->doDamage(cpuaccu);
+                p.reduceHealth(damage,0);
+                std::cout << "CPU did damage: "<< damage << std::endl;
+            } else { break; }
+        }
+    }
+    
+    if (p.getHealth(0) > p.getHealth(1))
+    {
+        std::cout << "PLAYER WINS" << std::endl;
+        std::cout << "Player health: " << p.getHealth(0) << std::endl;
+        std::cout << "CPU health: " << p.getHealth(1) << std::endl;
+    }
+    else if (p.getHealth(1) > p.getHealth(0))
+    {
+        std::cout << "CPU WINS" << std::endl;
+        std::cout << "Player health: " << p.getHealth(0) << std::endl;
+        std::cout << "CPU health: " << p.getHealth(1) << std::endl;
+    }
+    else 
+    {
+        std::cout << "What just happened?" << std::endl;
+        std::cout << "Player health: " << p.getHealth(0) << std::endl;
+        std::cout << "CPU health: " << p.getHealth(1) << std::endl;
     }
 }
