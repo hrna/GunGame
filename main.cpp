@@ -10,7 +10,7 @@ void initialize()
 	char goOn;
 	while (fight)
 	{
-		engine.battle(100,100);
+		engine.battle(100,100); // player accuracy, cpu accuracy
 		std::cout << "continue? (y/n)" << std::endl;
 		std::cin >> goOn;
 		if (goOn == 'y') { }
