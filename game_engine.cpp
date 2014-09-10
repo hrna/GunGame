@@ -16,6 +16,7 @@ int GameEngine::doDamage(int accuracy) {
     } else {
         return 0;
     }
+    return 0;
 }
 
 int GameEngine::battle(int playeraccu, int cpuaccu)
@@ -30,16 +31,18 @@ int GameEngine::battle(int playeraccu, int cpuaccu)
     {
         rTurn = rand()%2;
         if (p.getHealth(0) <= 0) { 
-            rollOn = false;
+            rollOn = false; // Propably not needed?
             std::cout << "=============================" << std::endl;
             std::cout << "Player is dead" << std::endl; 
             std::cout << "=============================" << std::endl;
+            break;
         }
         else if (p.getHealth(1) <= 0) {
-            rollOn = false;
+            rollOn = false; // Propably not needed?
             std::cout << "=============================" << std::endl;
             std::cout << "Cpu is dead" << std::endl; 
             std::cout << "=============================" << std::endl;
+            break;
         }
 
         if (rTurn == 0) // 0 = player, 1 = cpu

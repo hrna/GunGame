@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -Wextra -pedantic-errors -std=c++0x
+CFLAGS = -Wreturn-type -Wall -Wextra -pedantic-errors -std=c++0x
 DEPS = game_engine.h players.h
 OBJ = game_engine.o players.o main.o
 
@@ -10,4 +10,4 @@ GunGame: $(OBJ)
 	g++ -o $@ $^ $(CFLAGS)
 clean:
 	rm *.o
-	rm action
+	rm GunGame
