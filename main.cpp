@@ -11,12 +11,42 @@ int main(void) {
 
 	p.setHealth(100);
 
-	for (int i = 0; i < 10; i++)
-	{ 
-		if (p.getHealth(0) > 0) {
-			p.reduceHealth(engine.doDamage(80),0);
-			std::cout << p.getHealth(0) << std::endl; // 0 = player, 1 = cpu
-		} else { exit(0); }
+	while (p.getHealth(0) >= 1 or p.getHealth(1) >= 1)
+	{
+		int rTurn = rand()%2;
+		if (rTurn == 0) // 0 = player, 1 = cpu
+		{
+			if (p.getHealth(0) >= 1) {
+				p.reduceHealth(engine.doDamage(80),1);
+				//std::cout << "Player health: "<< p.getHealth(0) << std::endl; 
+			} else { break; }
+		}
+		else
+		{
+			if (p.getHealth(1) >= 1) {
+				p.reduceHealth(engine.doDamage(80),0);
+				//std::cout << "CPU health: "<< p.getHealth(1) << std::endl;
+			} else { break; }
+		}
+	}
+
+	if (p.getHealth(0) > p.getHealth(1))
+	{
+		std::cout << "PLAYER WINS" << std::endl;
+		std::cout << "Player health: " << p.getHealth(0) << std::endl;
+		std::cout << "CPU health: " << p.getHealth(1) << std::endl;
+	}
+	else if (p.getHealth(1) > p.getHealth(0))
+	{
+		std::cout << "CPU WINS" << std::endl;
+		std::cout << "Player health: " << p.getHealth(0) << std::endl;
+		std::cout << "CPU health: " << p.getHealth(1) << std::endl;
+	}
+	else 
+	{
+		std::cout << "What just happened?" << std::endl;
+		std::cout << "Player health: " << p.getHealth(0) << std::endl;
+		std::cout << "CPU health: " << p.getHealth(1) << std::endl;
 	}
 	return(0); 
 
