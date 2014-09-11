@@ -25,9 +25,8 @@ int GameEngine::battle(int playeraccu, int cpuaccu)
     Players p;
 
     p.setHealth(100);
-    rollOn = true;
 
-    while (rollOn)
+    while (rollOn = true)
     {
         rTurn = rand()%2;
         if (p.getHealth(0) <= 0) { 
@@ -50,7 +49,7 @@ int GameEngine::battle(int playeraccu, int cpuaccu)
             if (p.getHealth(0) > 1) {
                 damage = this->doDamage(playeraccu);
                 p.reduceHealth(damage,1);
-                std::cout << "Player did damage: "<< damage << std::endl; 
+                //std::cout << "Player did damage: "<< damage << std::endl; 
             } else { break; }
         }
         else
@@ -58,7 +57,7 @@ int GameEngine::battle(int playeraccu, int cpuaccu)
             if (p.getHealth(1) > 1) {
                 damage = this->doDamage(cpuaccu);
                 p.reduceHealth(damage,0);
-                std::cout << "CPU did damage: "<< damage << std::endl;
+                //std::cout << "CPU did damage: "<< damage << std::endl;
             } else { break; }
         }
     }
@@ -68,17 +67,41 @@ int GameEngine::battle(int playeraccu, int cpuaccu)
         std::cout << "PLAYER WINS" << std::endl;
         std::cout << "Player health: " << p.getHealth(0) << std::endl;
         std::cout << "CPU health: " << p.getHealth(1) << std::endl;
+        this->winner = 0;
     }
     else if (p.getHealth(1) > p.getHealth(0))
     {
         std::cout << "CPU WINS" << std::endl;
         std::cout << "Player health: " << p.getHealth(0) << std::endl;
         std::cout << "CPU health: " << p.getHealth(1) << std::endl;
+        this->winner = 1;
     }
     else 
     {
         std::cout << "What just happened?" << std::endl;
         std::cout << "Player health: " << p.getHealth(0) << std::endl;
         std::cout << "CPU health: " << p.getHealth(1) << std::endl;
+    }
+}
+
+int GameEngine::placeBets()
+{
+    std::cout << "who will win? (0/1): ";
+    std::cin >> this->whoWin;
+}
+
+int GameEngine::checkBets()
+{
+    if (this->whoWin == this->winner)
+    {
+        std::cout << "------------------------" << std::endl;
+        std::cout << "You have won the bet!!!!" << std::endl;
+        std::cout << "------------------------" << std::endl;
+    }
+    else
+    {
+        std::cout << "------------------------" << std::endl;
+        std::cout << "You have lost the bet :(" << std::endl;
+        std::cout << "------------------------" << std::endl;
     }
 }

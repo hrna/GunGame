@@ -10,11 +10,12 @@ int initialize(int playerAccuracy, int cpuAccuracy)
 	char goOn;
 	while (fight)
 	{
+		engine.placeBets();
 		engine.battle(playerAccuracy,cpuAccuracy); // player accuracy, cpu accuracy
-		std::cout << "continue? (y/n)" << std::endl;
+		engine.checkBets();
+		std::cout << "continue? (y/n): ";
 		std::cin >> goOn;
-		if (goOn == 'y') { }
-		else { fight = false; }
+		if (goOn != 'y') { break; }
 	}
 }
 
